@@ -1,0 +1,17 @@
+################################################################################
+# add your twitter credentials here
+C_KEY = ""
+C_SECRET = ""
+A_TOKEN = ""
+A_TOKEN_SECRET = ""
+################################################################################
+
+
+# here's some example usage
+if __name__ == '__main__':
+    from pruner import TweetPruner
+
+    pruner = TweetPruner(C_KEY, C_SECRET, A_TOKEN, A_TOKEN_SECRET)
+
+    pruner.show_worst_offenders(max_show=30)
+    pruner.show_worst_offenders(keyword='trump')
