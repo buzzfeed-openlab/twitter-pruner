@@ -9,7 +9,6 @@ class TweetPruner:
         auth.set_access_token(a_token, a_token_secret)
         self.api = tweepy.API(auth)
         self.tweet_sample = []
-        self.user_tweet_count = {}
 
 
     def grab_sample(self):
@@ -37,29 +36,32 @@ class TweetPruner:
 
     def count_tweets(self, keyword=None):
 
+        user_tally = {}
+
         if not self.tweet_sample:
             self.grab_sample()
 
         for t in self.tweet_sample:
             if not keyword or keyword.lower() in t.text.lower():
                 try:
-                    self.user_tweet_count[t.user.screen_name] += 1
+                    user_tally[t.user.screen_name] += 1
                 except KeyError:
-                    self.user_tweet_count[t.user.screen_name] = 1
+                    user_tally[t.user.screen_name] = 1
+
+        return user_tally
 
 
     def show_worst_offenders(self, max_show=None, keyword=None):
 
-        if not self.user_tweet_count:
-            self.count_tweets(keyword=keyword)
+        user_tally = self.count_tweets(keyword=keyword)
 
-        sorted_offenders = sorted(self.user_tweet_count, key=self.user_tweet_count.get)
-        if max_show and len(self.user_tweet_count) > max_show:
+        sorted_offenders = sorted(user_tally, key=user_tally.get)
+        if max_show and len(user_tally) > max_show:
             worst_offenders = sorted_offenders[-max_show:]
         else:
             worst_offenders = sorted_offenders
 
-        max_tweets = self.user_tweet_count[worst_offenders[-1]]
+        max_tweets = user_tally[worst_offenders[-1]]
         bar_unit = max(1,max_tweets/20)
 
         num_str = '{} '.format(max_show) if max_show else ''
@@ -71,8 +73,8 @@ class TweetPruner:
         self.pretty_tbl_print('handle', 'tweets', '')
         print('-'*45)
         for u in reversed(worst_offenders):
-            bar_length = int(self.user_tweet_count[u]/bar_unit)
-            self.pretty_tbl_print('@'+u, self.user_tweet_count[u], bar_length*'*')
+            bar_length = int(user_tally[u]/bar_unit)
+            self.pretty_tbl_print('@'+u, user_tally[u], bar_length*'*')
 
 
     def pretty_tbl_print(self, col1, col2, col3):
