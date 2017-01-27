@@ -1,9 +1,14 @@
 # twitter-prune
-Identify who's hogging too much space in your twitter feed! All you need is Python & a Twitter account.
+Identify who's hogging too much space in your Twitter feed! All you need is Python & a Twitter account.
 
+## What is this?
 If you don't know what GitHub is - hi! & welcome! This is a place where people put their code & collaborate on projects, among other things. Here, you can view a project's [history](https://github.com/buzzfeed-openlab/twitter-pruner/commits/master) & [discussions](https://github.com/buzzfeed-openlab/twitter-pruner/issues).
 
+This repo contains lightweight code that ingests your Twitter feed & generates output like this:
+<img width="345" alt="screen shot 2017-01-27 at 12 02 58 pm" src="https://cloud.githubusercontent.com/assets/1406537/22386041/1ea174ce-e48a-11e6-99fc-6c7a3a78987b.png">
+
 ## How to use this
+This project is newbie-friendly! If something is confusing, definitely [let me know](https://github.com/buzzfeed-openlab/twitter-pruner/issues/new).
 
 **1. Download this code**
 
@@ -48,4 +53,4 @@ python run.py
 ```
 Feel free to play around with the arguments passed into the `show_worst_offenders()` method.
 
-Now, mute or unfollow people with the ~objective data~ you've collected. Rinse & repeat.
+Now, you've got some ~objective data~ to work with. Mute/unfollow people with these insights! Rinse & repeat.
