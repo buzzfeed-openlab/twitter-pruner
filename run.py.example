@@ -13,5 +13,10 @@ if __name__ == '__main__':
 
     pruner = TweetPruner(C_KEY, C_SECRET, A_TOKEN, A_TOKEN_SECRET)
 
+    # the max_show parameter determines how many accounts you want to list
+    # feel free to show more/less, or remove the argument to see everything
     pruner.show_worst_offenders(max_show=30)
+
+    # the keyword parameter limits this to only look at tweets containing a keyword
+    # you can change this to whatever you're seeing too much of
     pruner.show_worst_offenders(keyword='trump')
