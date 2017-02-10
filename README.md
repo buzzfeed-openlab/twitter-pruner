@@ -1,4 +1,4 @@
-# twitter-prune
+# twitter-pruner
 Identify who's hogging too much space in your Twitter feed! All you need is Python & a Twitter account.
 
 ## What is this?
@@ -26,7 +26,7 @@ Make sure you have Python installed (if you're on a Mac, you already have Python
 
 Make sure you have pip, too. (Context: open-source code usually makes it easier to do something that'd be tedious to do from scratch. pip is for easily installing Python code that other people have written - in this case, [tweepy](http://www.tweepy.org/), a python library that makes it easier to work with the Twitter api)
 
-Optional but recommended: make a virtual environment using [virtualenv](https://virtualenv.readthedocs.io/en/latest/) and [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html). This is a good practive b/c it helps you manage your environments when you work on many projects with varying dependencies. If that last sentence sounds like gibberish...don't worry about it for now.
+Optional but recommended: make a virtual environment using [virtualenv](https://virtualenv.readthedocs.io/en/latest/) and [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html). This is a good practice b/c it helps you manage your environments when you work on many projects with varying dependencies. If that last sentence sounds like gibberish...don't worry about it for now.
 
 To install required python libraries:
 ```bash
@@ -38,7 +38,7 @@ pip install -r requirements.txt
 ```bash
 cp run.py.example run.py
 ```
-You now have your own script, `run.py` (this is gitignored to keep twitter credentials from accidently getting into version control)
+You now have your own script, `run.py` (this is gitignored to keep twitter credentials from accidentally getting into version control)
 
 **2. Add Twitter API credentials**
 

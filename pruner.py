@@ -1,5 +1,6 @@
 import tweepy
 import time
+import datetime
 
 
 class TweetPruner:
@@ -13,22 +14,16 @@ class TweetPruner:
 
     def grab_sample(self):
 
-        some_tweets = []
-        while not some_tweets:
+        last_id = None
+        while len(self.tweet_sample)<800: # 800 is the limit
             try:
-                some_tweets = self.api.home_timeline(count=200, exclude_mentions=True)
-            except tweepy.error.RateLimitError:
-                print("sleep one min")
-                time.sleep(60)
+                grabbed = self.api.home_timeline(count=200, max_id=last_id, exclude_mentions=True)
+                if len(grabbed)==1: # if hitting the limit
+                    break
 
-        self.tweet_sample.extend(some_tweets)
-        max_id = some_tweets[-1].id
-
-        while len(self.tweet_sample)<100: # TODO: change this conditional
-            try:
-                more_tweets = self.api.home_timeline(count=200, max_id=max_id, exclude_mentions=True)
-                self.tweet_sample.extend(more_tweets[1:]) # exclude first tweet b/c it is the same as last tweet in last bunch
-                print("  getting more tweets ({} tweets so far)".format(len(self.tweet_sample)))
+                self.tweet_sample.extend(grabbed[1:]) # exclude first tweet b/c it is the same as last tweet in last bunch
+                print("  grabbing tweets ({} tweets so far)".format(len(self.tweet_sample)))
+                last_id = grabbed[-1].id
             except tweepy.error.RateLimitError:
                 print("  waiting a minute...")
                 time.sleep(60)
